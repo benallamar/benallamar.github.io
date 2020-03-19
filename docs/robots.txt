@@ -1,0 +1,4 @@
+User-agent: *
+Sitemap: http://benallamar.github.io/sitemap.xml
+Disallow: /ghost/
+Disallow: /p/
