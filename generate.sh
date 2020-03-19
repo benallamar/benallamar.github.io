@@ -21,3 +21,8 @@ LC_ALL=C find . -type f -not -wholename *.git* -exec sed -i '' -e 's/http:\/\/ww
 
 # Set up Github Pages CNAME
 echo "benallamar.github.io" > CNAME
+
+echo "Deploy to github"
+                git add -A
+                git commit -m "Update on the website at $(date)"
+                git push origin master:master master:gh-pages -f
