@@ -19,9 +19,6 @@ LC_ALL=C find . -type f -not -wholename *.git* -exec sed -i '' -e 's/http:\/\/be
 LC_ALL=C find . -type f -not -wholename *.git* -exec sed -i '' -e 's/benallamar.github.io/benallamar.github.io/g' {} +
 LC_ALL=C find . -type f -not -wholename *.git* -exec sed -i '' -e 's/http:\/\/www.gravatar.com/https:\/\/www.gravatar.com/g' {} +
 
-# Set up Github Pages CNAME
-echo "benallamar.github.io" > CNAME
-
 echo "Deploy to github"
                 git add -A
                 git commit -m "Update on the website at $(date)"
