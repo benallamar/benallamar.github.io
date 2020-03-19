@@ -1,5 +1,8 @@
 #!/bin/bash
 
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+find $DIR  -not \( -name 'generate.sh' -or -name 'git' \) -not -path '*/\.*' -delete
+
 # Copy blog content
 wget --recursive --no-host-directories  --adjust-extension --timeout=30 --no-parent --convert-links http://localhost:2368
 
@@ -15,9 +18,9 @@ wget --recursive --no-host-directories  --adjust-extension --timeout=30 --no-par
 wget --recursive --no-host-directories  --adjust-extension --timeout=30 --no-parent --convert-links http://localhost:2368/sitemap-tags.xml
 
 # Replace localhost with domain
-LC_ALL=C find . -type f -not -wholename *.git* -exec sed -i '' -e 's/http:\/\/localhost:2368/https:\/\/benallamar.github.io/g' {} +
-LC_ALL=C find . -type f -not -wholename *.git* -exec sed -i '' -e 's/localhost:2368/benallamar.github.io/g' {} +
-LC_ALL=C find . -type f -not -wholename *.git* -exec sed -i '' -e 's/https:\/\/www.gravatar.com/https:\/\/www.gravatar.com/g' {} +
+LC_ALL=C find . -type f -not \( -wholename *.git* -or -name generate.sh \) -exec sed -i '' -e 's/http:\/\/localhost:2368/https:\/\/benallamar.github.io/g' {} +
+LC_ALL=C find . -type f -not \( -wholename *.git* -or -name generate.sh \)  -exec sed -i '' -e 's/localhost:2368/benallamar.github.io/g' {} +
+LC_ALL=C find . -type f -not \( -wholename *.git* -or -name generate.sh \) -exec sed -i '' -e 's/https:\/\/www.gravatar.com/https:\/\/www.gravatar.com/g' {} +
 
 echo "Deploy to github"
 git add -A
